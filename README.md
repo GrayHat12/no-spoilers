@@ -33,7 +33,7 @@ This project is available under [MIT](https://github.com/GrayHat12/no-spoilers/b
 
 ## FAQ
 
-**Q:** How do I work on a issue?
+**Q: How do I work on a issue?**
 
 **A:** Find an [open issue](https://github.com/GrayHat12/no-spoilers/issues) and then spend some time looking in details about the issue and if you think you are the one who can bring in a change to fix that, ask any admin/dev team to assign you on that issue and we'll consider it. You can raise a Pull Request once you are done working with it.
 
