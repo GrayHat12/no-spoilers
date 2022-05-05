@@ -3,7 +3,7 @@
 <p align="center">
     <img src="https://img.shields.io/badge/version-1.0-yellowgreen" alt="version 1.0"/>
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="license MIT"/>
-    <img src="https://img.shields.io/badge/author-GrayHat-yellow" alt="author GrayHat"/>
+    <img src="https://img.shields.io/badge/author-GrayHat-silver" alt="author GrayHat"/>
 </p>
 
 > Remove Spoilers from Youtube
