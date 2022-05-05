@@ -19,7 +19,7 @@
 2. go to chrome://extensions/<br>
 3. Enable developer mode on top right corner<br>
 4. Click on Load Unpacked button and point to the cloned project<br>
-5. Go and linkedin and the spread button will appear there
+5. Now you can click on the popup, edit preferences and click update. Go to youtube to see the effects<br>
 
 ## 🤝 Contributing
 
