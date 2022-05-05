@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "No Spoilers",
+  "offline_enabled": true,
+  "description": "Hide all spoiler content from youtube.",
+  "action": {
+    "default_title": "No Spoilers",
+    "default_popup": "./html/popup.html"
+  },
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["./js/youtube.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "./js/background.js"
+  },
+  "permissions": ["storage"]
+}

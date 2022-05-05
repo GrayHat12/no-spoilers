@@ -1,0 +1,56 @@
+.container {
+    width: fit-content;
+}
+
+#master_div {
+    border: 1px solid;
+    outline: none;
+    cursor: text;
+    display: flex;
+    width: fit-content;
+    max-width: 500px;
+    padding: 1px;
+    align-items: stretch;
+    justify-content: stretch;
+    flex-flow: wrap;
+}
+
+#master_div:focus {
+    outline: none;
+}
+
+#keywords {
+    display: contents;
+}
+
+.keyword {
+    padding: 2px;
+    background-color: darkgray;
+    border: none;
+    display: inline-block;
+    flex-grow: 1;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+#input {
+    width: auto;
+    height: inherit;
+    padding: inherit;
+}
+
+#keyword_input {
+    height: 20px;
+}
+
+#keyword_input,
+#keyword_input:focus,
+#keyword_input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+#update {
+    margin-top: 20px;
+    width: fit-content;
+}

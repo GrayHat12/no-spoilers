@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/popup.css" />
+    <script defer src="../js/popup.js"></script>
+    <title>No Spoilers</title>
+  </head>
+  <body>
+    <h1>No Spoilers</h1>
+    <p>
+      Add keywords to filter out spoilers from youtube. Type in a keyword and press enter to add more.
+    </p>
+    <div class="container">
+      <div class="input">
+        <div id="master_div">
+          <div id="keywords"></div>
+          <div id="input">
+            <input id="keyword_input" type="text" placeholder="Keyword" value="" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <input checked id="enabled" name="enabled" type="checkbox" title="Enable" />
+        <label for="enabled">Enabled</label>
+      </div>
+      <button id="update">Update</button>
+    </div>
+  </body>
+</html>
