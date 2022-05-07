@@ -111,7 +111,7 @@ function blockElement(element) {
     existingBackdrop.remove();
   }
   if (!match || existingBackdrop) return;
-  console.warn(`Blocking ${channelName} : ${videoTitle}`);
+  console.log(`Blocking ${channelName} : ${videoTitle}`);
   let backdrop = newBackdropElement();
   element.appendChild(backdrop);
 }
@@ -151,6 +151,7 @@ function update(keywords, enabled) {
     let regex = keyword.replace(/[^\w\d\s]/gim, ".*");
     regex = regex.replace(/\s+/gim, "\\s*");
     regex = regex.replace(/\d+/gim, "\\d+");
+    regex = `[^\\w\\d]*${regex}`;
     return new RegExp(regex, "im");
   });
   reset();
@@ -171,7 +172,7 @@ function fetchState() {
       type: "tab_reg",
     },
     (response) => {
-      console.warn(response);
+      console.log(response);
     }
   );
 }

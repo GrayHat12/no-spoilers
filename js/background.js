@@ -25,6 +25,10 @@ chrome.tabs.onRemoved.addListener((id, ev) => {
 
 function updateState({ keywords, enabled }) {
   console.log("updateState", keywords, enabled);
+  keywords = keywords || [];
+  if (typeof enabled !== "boolean") {
+    enabled = true;
+  }
   chrome.storage.sync.set({ keywords }, () => {
     console.log("keywords is set to " + keywords);
   });

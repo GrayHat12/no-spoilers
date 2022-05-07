@@ -1,5 +1,4 @@
 const KEYWORD_INPUT = document.getElementById("keyword_input");
-const UPDATE_BUTTON = document.getElementById("update");
 const ENABLED_TOOGLE = document.getElementById("enabled");
 let KEYWORDS = [];
 let ENABLED = true;
@@ -22,12 +21,14 @@ function pushKeyword(keyword) {
   if (KEYWORDS.includes(keyword)) return;
   KEYWORDS.push(keyword);
   generateKeywordElement(keyword);
+  sendState();
 }
 
 function popKeyword() {
   if (KEYWORDS.length == 0) return;
   KEYWORDS.pop();
   updateUI();
+  sendState();
 }
 
 KEYWORD_INPUT.addEventListener("keyup", (ev) => {
@@ -35,7 +36,12 @@ KEYWORD_INPUT.addEventListener("keyup", (ev) => {
   if (key == "Enter") {
     pushKeyword(KEYWORD_INPUT.value);
     KEYWORD_INPUT.value = "";
-  } else if (key == "Backspace" || key == "Delete") {
+  }
+});
+
+KEYWORD_INPUT.addEventListener("keydown", (ev) => {
+  let key = ev.key;
+  if (key == "Backspace" || key == "Delete") {
     if (KEYWORD_INPUT.value == "") {
       popKeyword();
     }
@@ -44,10 +50,6 @@ KEYWORD_INPUT.addEventListener("keyup", (ev) => {
 
 ENABLED_TOOGLE.addEventListener("change", (ev) => {
   ENABLED = ev.target.checked;
-});
-
-UPDATE_BUTTON.addEventListener("click", () => {
-  sendState();
 });
 
 function sendState() {
@@ -69,9 +71,6 @@ function fetchState() {
     },
     (response) => {
       console.log(response);
-      // KEYWORDS = response.keywords;
-      // ENABLED = response.enabled;
-      // updateUI();
     }
   );
 }
@@ -82,6 +81,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse(true);
     KEYWORDS = request.value.keywords;
     ENABLED = request.value.enabled;
+    KEYWORDS = KEYWORDS || [];
     updateUI();
   } else {
     sendResponse({ error: "Unknown request type" });
