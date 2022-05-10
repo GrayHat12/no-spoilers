@@ -1,12 +1,26 @@
 const KEYWORD_INPUT = document.getElementById("keyword_input");
 const ENABLED_TOOGLE = document.getElementById("enabled");
+const DARK_MODE = document.getElementById("dark-mode");
 let KEYWORDS = [];
 let ENABLED = true;
+
+function removeKeyword(keyword) {
+  KEYWORDS = KEYWORDS.filter(k => k !== keyword);
+  updateUI();
+  sendState();
+}
 
 function generateKeywordElement(keyword) {
   let element = document.createElement("div");
   element.classList.add("keyword");
-  element.textContent = keyword;
+  let text = document.createElement("span");
+  text.classList.add("text");
+  text.innerText = keyword;
+  let remove = document.createElement("img");
+  remove.src = "/assets/close.png";
+  remove.addEventListener("click", () => removeKeyword(keyword));
+  element.appendChild(text);
+  element.appendChild(remove);
   document.getElementById("keywords").appendChild(element);
 }
 
@@ -52,6 +66,12 @@ ENABLED_TOOGLE.addEventListener("change", (ev) => {
   ENABLED = ev.target.checked;
   sendState();
 });
+
+DARK_MODE.addEventListener("click", () => {
+  let isdark = document.body.classList.contains("dark");
+  if (isdark) document.body.classList.remove("dark");
+  else document.body.classList.add("dark");
+})
 
 function sendState() {
   chrome.runtime.sendMessage(
