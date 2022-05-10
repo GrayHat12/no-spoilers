@@ -50,6 +50,7 @@ KEYWORD_INPUT.addEventListener("keydown", (ev) => {
 
 ENABLED_TOOGLE.addEventListener("change", (ev) => {
   ENABLED = ev.target.checked;
+  sendState();
 });
 
 function sendState() {
