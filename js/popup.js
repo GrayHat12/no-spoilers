@@ -3,6 +3,16 @@ const ENABLED_TOOGLE = document.getElementById("enabled");
 const DARK_MODE = document.getElementById("dark-mode");
 let KEYWORDS = [];
 let ENABLED = true;
+let DARK_MODE_ENABLED = true;
+
+function updateTheme() {
+  if (DARK_MODE_ENABLED) {
+    if (!document.body.classList.contains("dark")) document.body.classList.add("dark");
+  }
+  else {
+    document.body.classList.remove("dark");
+  }
+}
 
 function removeKeyword(keyword) {
   KEYWORDS = KEYWORDS.filter(k => k !== keyword);
@@ -28,6 +38,7 @@ function updateUI() {
   document.getElementById("keywords").innerHTML = "";
   KEYWORDS.forEach((keyword) => generateKeywordElement(keyword));
   ENABLED_TOOGLE.checked = ENABLED;
+  updateTheme();
 }
 
 function pushKeyword(keyword) {
@@ -69,15 +80,16 @@ ENABLED_TOOGLE.addEventListener("change", (ev) => {
 
 DARK_MODE.addEventListener("click", () => {
   let isdark = document.body.classList.contains("dark");
-  if (isdark) document.body.classList.remove("dark");
-  else document.body.classList.add("dark");
+  DARK_MODE_ENABLED = !isdark;
+  updateTheme();
+  sendState();
 })
 
 function sendState() {
   chrome.runtime.sendMessage(
     {
       type: "state_set",
-      value: { keywords: KEYWORDS, enabled: ENABLED },
+      value: { keywords: KEYWORDS, enabled: ENABLED, darkMode: DARK_MODE_ENABLED },
     },
     (response) => {
       console.log(response);
@@ -102,6 +114,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse(true);
     KEYWORDS = request.value.keywords;
     ENABLED = request.value.enabled;
+    DARK_MODE_ENABLED = request.value.darkMode;
     KEYWORDS = KEYWORDS || [];
     updateUI();
   } else {
