@@ -10,7 +10,7 @@
 
 #### Visit [Homepage](https://github.com/GrayHat12/no-spoilers)
 
-#### Available on [Chrome Store](https://github.com/GrayHat12/no-spoilers)
+#### Available on [Chrome Store](https://chrome.google.com/webstore/detail/no-spoilers/kfbhhaallccnekmpojknfjblchllocgb/related)
 
 ## Getting Started
 
