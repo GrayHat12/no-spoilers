@@ -7,16 +7,26 @@
     "default_title": "No Spoilers",
     "default_popup": "./html/popup.html"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
-      "js": ["./js/youtube.js"]
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "./js/youtube.js"
+      ]
     }
   ],
   "background": {
     "service_worker": "./js/background.js"
   },
-  "permissions": ["storage"],
-  "icons": { "16": "./assets/icon16.png", "48": "./assets/icon48.png", "128": "./assets/icon128.png" }
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "./assets/icon16.png",
+    "48": "./assets/icon48.png",
+    "128": "./assets/icon128.png"
+  }
 }
