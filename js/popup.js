@@ -131,7 +131,8 @@ chrome.action.onClicked.addListener((tab) => {
 
 async function updateText() {
   let responses = await Promise.all([
-    fetch("https://raw.githubusercontent.com/GrayHat12/yt-miniplayer/refs/heads/master/README.md")
+    fetch("https://raw.githubusercontent.com/GrayHat12/no-spoilers/refs/heads/main/updates/GENERAL.md"),
+    fetch("https://raw.githubusercontent.com/GrayHat12/no-spoilers/refs/heads/main/updates/NoSpoilers.md"),
   ]);
 
   let markdownCombined = "";

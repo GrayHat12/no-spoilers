@@ -7,7 +7,7 @@
     "default_title": "No Spoilers",
     "default_popup": "./html/popup.html"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "content_scripts": [
     {
       "matches": [
@@ -23,6 +23,10 @@
   },
   "permissions": [
     "storage"
+  ],
+  "host_permissions": [
+    "https://raw.githubusercontent.com/GrayHat12/no-spoilers/refs/heads/main/updates/GENERAL.md",
+    "https://raw.githubusercontent.com/GrayHat12/no-spoilers/refs/heads/main/updates/NoSpoilers.md"
   ],
   "icons": {
     "16": "assets/icon16.png",
