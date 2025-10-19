@@ -2,6 +2,7 @@ body {
     background-color: white;
     color: #030303;
     font-family: "Roboto", "Arial", sans-serif;
+    min-width: 400px;
 }
 
 body.dark {
@@ -83,7 +84,8 @@ body.dark input {
     cursor: default;
     justify-content: space-between;
 
-    border: 1px solid #030303;;
+    border: 1px solid #030303;
+    ;
     display: inline-flex;
     flex-grow: 1;
     margin: 2px;

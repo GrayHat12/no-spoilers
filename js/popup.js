@@ -1,6 +1,8 @@
 const KEYWORD_INPUT = document.getElementById("keyword_input");
 const ENABLED_TOOGLE = document.getElementById("enabled");
 const DARK_MODE = document.getElementById("dark-mode");
+const UpdateText = document.getElementById("update-text");
+
 let KEYWORDS = [];
 let ENABLED = true;
 let DARK_MODE_ENABLED = true;
@@ -125,5 +127,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.action.onClicked.addListener((tab) => {
   fetchState();
 });
+
+
+async function updateText() {
+  let responses = await Promise.all([
+    fetch("https://raw.githubusercontent.com/GrayHat12/yt-miniplayer/refs/heads/master/README.md")
+  ]);
+
+  let markdownCombined = "";
+  for (let response of responses) {
+    if (response.status != 200) continue;
+    markdownCombined += await response.text();
+  }
+  UpdateText.innerHTML = DOMPurify.sanitize(marked.parse(markdownCombined));
+}
+
+updateText().then(console.log).catch(console.error);
+
 
 fetchState();

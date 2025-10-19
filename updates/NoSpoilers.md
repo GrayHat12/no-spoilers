@@ -1,0 +1,1 @@
+- We have a new extension [Youtube Miniplayer](https://chromewebstore.google.com/detail/youtube-miniplayer/elhgajfahdnnkehiiacodmholaijcdcl) that brings back the miniplayer button on youtube videos. Please give it a try

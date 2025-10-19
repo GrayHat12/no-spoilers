@@ -1,0 +1,1 @@
+- Our extensions now have a built in updates section to keep you up to date with new developments.
