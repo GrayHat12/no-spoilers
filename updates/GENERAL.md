@@ -1,1 +1,2 @@
 - Our extensions now have a built in updates section to keep you up to date with new developments.
+- I was free this weekend and so am pushing a new design update for both [`No Spoilers`](https://chrome.google.com/webstore/detail/no-spoilers/kfbhhaallccnekmpojknfjblchllocgb) and [`Youtube Miniplayer`](https://chrome.google.com/webstore/detail/youtube-miniplayer/elhgajfahdnnkehiiacodmholaijcdcl).

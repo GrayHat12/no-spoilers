@@ -1,7 +1,7 @@
 # Welcome to No Spoilers Browser Extension 👋
 
 <p align="center">
-    <img src="https://img.shields.io/badge/version-1.0.4-yellowgreen" alt="version 1.0.4"/>
+    <img src="https://img.shields.io/badge/version-1.0.5-yellowgreen" alt="version 1.0.5"/>
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="license MIT"/>
     <img src="https://img.shields.io/badge/author-GrayHat-silver" alt="author GrayHat"/>
 </p>

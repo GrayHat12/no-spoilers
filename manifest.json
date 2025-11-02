@@ -7,7 +7,7 @@
     "default_title": "No Spoilers",
     "default_popup": "./html/popup.html"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "content_scripts": [
     {
       "matches": [

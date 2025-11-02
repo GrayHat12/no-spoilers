@@ -25,6 +25,7 @@ function removeKeyword(keyword) {
 function generateKeywordElement(keyword) {
   let element = document.createElement("div");
   element.classList.add("keyword");
+  element.classList.add("glass-card");
   let text = document.createElement("span");
   text.classList.add("text");
   text.innerText = keyword;
