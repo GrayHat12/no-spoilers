@@ -109,7 +109,6 @@ body.dark .keyword {
     /* border: 1px solid white; */
 }
 
-
 .keyword img {
     background-color: lightgray;
     border-radius: 50%;
@@ -175,11 +174,11 @@ body.dark input {
     justify-content: space-between;
 }
 
-.title>* {
+.title > * {
     display: block;
 }
 
-summary>h4 {
+summary > h4 {
     width: 100%;
     cursor: pointer;
     display: inline;
@@ -206,8 +205,7 @@ summary>h4 {
     -webkit-backdrop-filter: blur(calc(50px * var(--var-blur)));
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, calc(var(--var-refraction) * 0.3));
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 32px,
-        rgba(0, 0, 0, 0.05) 0px 2px 8px,
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 32px, rgba(0, 0, 0, 0.05) 0px 2px 8px,
         rgba(255, 255, 255, calc(0.05 + calc(var(--var-refraction) * 0.5))) 0px 1px 0px inset,
         rgba(255, 255, 255, calc(0.05 + calc(var(--var-refraction) * 0.1))) 0px -1px 0px inset;
     position: relative;
@@ -249,8 +247,8 @@ summary>h4 {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
@@ -261,19 +259,19 @@ summary>h4 {
     left: 2px;
     bottom: 2px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-input:checked+.slider {
-    background-color: #2196F3;
+input:checked + .slider {
+    background-color: #2196f3;
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -290,37 +288,85 @@ input:checked+.slider:before {
 
 .card {
     background-color: rgb(225, 197, 255) !important;
-    background-image: linear-gradient(315deg, rgba(225, 197, 255, var(--var-refraction)) 0%, rgba(102, 96, 167, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(225, 197, 255, var(--var-refraction)) 0%,
+        rgba(102, 96, 167, var(--var-refraction)) 74%
+    ) !important;
 }
 
 body.dark .card {
     background-color: rgb(102, 96, 167) !important;
-    background-image: linear-gradient(315deg, rgba(102, 96, 167, var(--var-refraction)) 0%, rgba(69, 53, 139, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(102, 96, 167, var(--var-refraction)) 0%,
+        rgba(69, 53, 139, var(--var-refraction)) 74%
+    ) !important;
 }
 
-#keywords>.glass-card {
+#keywords > .glass-card {
     background-color: rgb(221, 249, 255) !important;
-    background-image: linear-gradient(315deg, rgba(140, 147, 242, var(--var-refraction)) 0%, rgba(221, 249, 255, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(140, 147, 242, var(--var-refraction)) 0%,
+        rgba(221, 249, 255, var(--var-refraction)) 74%
+    ) !important;
 }
 
-body.dark #keywords>.glass-card {
+body.dark #keywords > .glass-card {
     background-color: rgb(140, 147, 242) !important;
     /* background-image: linear-gradient(315deg, #485461 0%, #28313b 74%); */
-    background-image: linear-gradient(315deg, rgba(69, 53, 139, var(--var-refraction)) 0%, rgba(140, 147, 242, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(69, 53, 139, var(--var-refraction)) 0%,
+        rgba(140, 147, 242, var(--var-refraction)) 74%
+    ) !important;
     /* box-shadow: 0 2px 0 #485461; */
     color: white;
 
     /* border: 1px solid white; */
 }
 
-body.dark .container>.input>.glass-card {
+body.dark .container > .input > .glass-card {
     background-color: rgb(69, 53, 139) !important;
     /* background-image: linear-gradient(315deg, #485461 0%, #28313b 74%); */
-    background-image: linear-gradient(315deg, rgba(140, 147, 242, var(--var-refraction)) 0%, rgba(69, 53, 139, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(140, 147, 242, var(--var-refraction)) 0%,
+        rgba(69, 53, 139, var(--var-refraction)) 74%
+    ) !important;
 }
 
-.container>.input>.glass-card {
+.container > .input > .glass-card {
     background-color: rgb(140, 147, 242) !important;
     /* background-image: linear-gradient(315deg, #485461 0%, #28313b 74%); */
-    background-image: linear-gradient(315deg, rgba(221, 249, 255, var(--var-refraction)) 0%, rgba(140, 147, 242, var(--var-refraction)) 74%) !important;
+    background-image: linear-gradient(
+        315deg,
+        rgba(221, 249, 255, var(--var-refraction)) 0%,
+        rgba(140, 147, 242, var(--var-refraction)) 74%
+    ) !important;
+}
+
+.translation-on {
+    color: #1d7e37;
+    /* background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+}
+
+body.dark .translation-on {
+    color: #9be6a6;
+    /* background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+}
+
+.translation-off {
+    color: #7e271d;
+    /* background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
+}
+
+body.dark .translation-off {
+    color: #e6aa9b;
+    /* background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
 }

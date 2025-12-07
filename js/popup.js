@@ -2,10 +2,48 @@ const KEYWORD_INPUT = document.getElementById("keyword_input");
 const ENABLED_TOOGLE = document.getElementById("enabled");
 const DARK_MODE = document.getElementById("dark-mode");
 const UpdateText = document.getElementById("update-text");
+const TranslateButton = document.getElementById("translate-button");
 
 let KEYWORDS = [];
 let ENABLED = true;
 let DARK_MODE_ENABLED = true;
+let translationRunning = false;
+
+let TextContent = [
+  {
+    querySelectors: ["title", "#txt-title"],
+    src: "No Spoilers",
+    target: null
+  },
+  {
+    querySelectors: ["#txt-updates"],
+    src: "Updates",
+    target: null
+  },
+  {
+    querySelectors: ["#txt-controls"],
+    src: "Controls",
+    target: null
+  },
+  {
+    querySelectors: ["#txt-enable"],
+    src: "Enable Extension",
+    target: null
+  },
+  {
+    querySelectors: ["#txt-help"],
+    src: "Add keywords to filter out spoilers from youtube. Type in a keyword and press enter to add more.",
+    target: null
+  },
+  {
+    querySelectors: ["#update-text"],
+    src: null,
+    target: null,
+    opts: {
+      isMarkdown: true
+    }
+  }
+];
 
 function updateTheme() {
   if (DARK_MODE_ENABLED) {
@@ -141,10 +179,109 @@ async function updateText() {
     if (response.status != 200) continue;
     markdownCombined += await response.text();
   }
+
+  TextContent[5].src = markdownCombined;
   UpdateText.innerHTML = DOMPurify.sanitize(marked.parse(markdownCombined));
 }
 
-updateText().then(console.log).catch(console.error);
+async function translate() {
+  if (translationRunning) return false;
+  if (navigator.languages.find(x => x === "en" || x.split('-').includes("en"))) {
+    console.log("no need to translate, already works with english");
+    return false;
+  };
+  if ("Translator" in window) {
+    translationRunning = true;
+    try {
+      /**
+     * @typedef {require("@types/dom-chromium-ai").Translator} Translator
+     */
+      const translator = await Translator.create({
+        sourceLanguage: 'en',
+        targetLanguage: navigator.language,
+        monitor(m) {
+          m.addEventListener('downloadprogress', (e) => {
+            console.log(`Downloaded ${e.loaded * 100}%`);
+          });
+        },
+      });
+      for (let i = 0; i < TextContent.length; i++) {
+        if (!TextContent[i].src) continue;
+        if (typeof TextContent[i].target === "string") continue;
+        TextContent[i].target = await translator.translate(TextContent[i].src);
+      }
+      updateTranslations();
+    } finally {
+      translationRunning = false;
+    }
+  } else {
+    console.warn("translation api not supported");
+    return "Translation API not supported in your browser";
+  }
+}
 
+function updateTranslations() {
+  for (let i = 0; i < TextContent.length; i++) {
+    if (!TextContent[i].src) continue;
+    if (typeof TextContent[i].target !== "string") continue;
+    for (let querySelector of TextContent[i].querySelectors) {
+      let element = document.querySelector(querySelector);
+      if (element) {
+        // element.textContent = TextContent[i].target;
+        if (TextContent[i].opts?.isMarkdown) {
+          element.innerHTML = DOMPurify.sanitize(marked.parse(TextContent[i].target));
+        } else {
+          element.textContent = TextContent[i].target;
+        }
+      }
+    }
+  }
+}
+
+async function onTranslateClick(event) {
+  let isTranslationOff = TranslateButton.classList.contains("translation-off");
+  if (isTranslationOff) {
+    try {
+      let result = await translate();
+      if (result === false) return;
+      if (typeof result === "string") {
+        alert(result);
+        return;
+      }
+      TranslateButton.classList.remove("translation-off");
+      TranslateButton.classList.add("translation-on");
+      console.log("translation complete");
+    } catch (err) {
+      if (err.message) alert(err.message);
+      console.error("translation failed", err);
+    }
+  } else {
+    for (let i = 0; i < TextContent.length; i++) {
+      if (!TextContent[i].src) continue;
+      // if (typeof TextContent[i].target !== "string") continue;
+      for (let querySelector of TextContent[i].querySelectors) {
+        let element = document.querySelector(querySelector);
+        if (element) {
+          if (TextContent[i].opts?.isMarkdown) {
+            element.innerHTML = DOMPurify.sanitize(marked.parse(TextContent[i].src));
+          } else {
+            element.textContent = TextContent[i].src;
+          }
+        }
+      }
+    }
+    TranslateButton.classList.remove("translation-on");
+    TranslateButton.classList.add("translation-off");
+  }
+}
+
+updateText().then(console.log).catch(console.error);
+TranslateButton.addEventListener("click", onTranslateClick);
+
+if (navigator.languages.find(x => x === "en" || x.split('-').includes("en"))) {
+  console.debug("hiding translater button");
+  TranslateButton.removeEventListener("click", onTranslateClick);
+  TranslateButton.remove();
+};
 
 fetchState();
