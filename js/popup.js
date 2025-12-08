@@ -192,11 +192,12 @@ async function translate() {
   };
   if ("Translator" in window) {
     translationRunning = true;
+    TranslateButton.classList.add("loader");
     try {
       /**
      * @typedef {require("@types/dom-chromium-ai").Translator} Translator
      */
-      const translator = await Translator.create({
+      let translator = await Translator.create({
         sourceLanguage: 'en',
         targetLanguage: navigator.language,
         monitor(m) {
@@ -213,6 +214,7 @@ async function translate() {
       updateTranslations();
     } finally {
       translationRunning = false;
+      TranslateButton.classList.remove("loader");
     }
   } else {
     console.warn("translation api not supported");
@@ -278,10 +280,44 @@ async function onTranslateClick(event) {
 updateText().then(console.log).catch(console.error);
 TranslateButton.addEventListener("click", onTranslateClick);
 
-if (navigator.languages.find(x => x === "en" || x.split('-').includes("en"))) {
+async function checkIfTranslationIsPossible() {
+  if ("Translator" in window) {
+    try {
+      /**
+     * @typedef {require("@types/dom-chromium-ai").Translator} Translator
+     */
+      let availability = await Translator.availability({
+        sourceLanguage: 'en',
+        targetLanguage: navigator.language,
+      });
+      if (availability === "unavailable") return false;
+      return true;
+    } catch (err) {
+      console.log("translation not possible", err);
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+function hideTranslateButton() {
   console.debug("hiding translater button");
   TranslateButton.removeEventListener("click", onTranslateClick);
   TranslateButton.remove();
-};
+}
+
+if (navigator.languages.find(x => x === "en" || x.split('-').includes("en"))) {
+  hideTranslateButton();
+} else {
+  checkIfTranslationIsPossible().then((possible) => {
+    if (!possible) {
+      hideTranslateButton();
+    }
+  }).catch(err => {
+    console.log("something went wrong when checking for translate availability", err);
+    hideTranslateButton();
+  });
+}
 
 fetchState();
