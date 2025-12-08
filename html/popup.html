@@ -16,16 +16,12 @@
 	<h1 class="title card glass-card">
 		<span id="txt-title">No Spoilers</span>
 		<div>
-			<svg title="switch light/dark mode" class="dark-mode glass-card" focusable="false" aria-hidden="true"
-				viewBox="0 0 24 24" fill="currentColor" id="dark-mode">
+			<svg class="dark-mode glass-card" focusable="false" aria-hidden="true" viewBox="0 0 24 24"
+				fill="currentColor" id="dark-mode">
+				<title>Dark/Light Mode</title>
 				<path
 					d="M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z">
 				</path>
-			</svg>
-			<svg title="enable translation" class="dark-mode glass-card translation-off" viewBox="0 0 256 256"
-				fill="currentColor" id="translate-button" xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M239.126,212.42188l-56-112a8.0001,8.0001,0,0,0-14.31055,0L147.11786,143.817a88.012,88.012,0,0,1-47.15222-16.89991A103.63885,103.63885,0,0,0,127.666,64H151.9707a8,8,0,0,0,0-16h-56V32a8,8,0,0,0-16,0V48h-56a8,8,0,1,0,0,16h87.63251a87.71319,87.71319,0,0,1-23.64032,52.34106A87.62936,87.62936,0,0,1,68.981,85.332a7.99985,7.99985,0,1,0-15.083,5.33789A103.55887,103.55887,0,0,0,75.9798,126.93945,87.52763,87.52763,0,0,1,23.9707,144a8,8,0,1,0,0,16A103.48489,103.48489,0,0,0,87.984,137.90955,104.14159,104.14159,0,0,0,139.42535,159.202l-26.60992,53.21985a8.00006,8.00006,0,0,0,14.31055,7.15625L140.915,192h70.11133l13.78906,27.57813a8.00006,8.00006,0,0,0,14.31055-7.15625ZM148.915,176l27.05566-54.11133L203.02637,176Z" />
 			</svg>
 		</div>
 	</h1>
@@ -44,10 +40,36 @@
 		<div>
 			<div class="input-switch">
 				<label for="enabled">
-					<span id="txt-enable">Enable Extension</span>
+					<span id="txt-enable">
+						<svg class="dark-mode glass-card" viewBox="0 0 0.3 0.3" fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<title>Extension Switch</title>
+							<path
+								d="M0.15 0.17v-0.16M0.052 0.05A0.139 0.139 0 0 0 0.01 0.15c0 0.077 0.063 0.14 0.14 0.14 0.077 0 0.14 -0.063 0.14 -0.14A0.139 0.139 0 0 0 0.248 0.05"
+								fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="0.02" />
+						</svg>
+						Enable Extension
+					</span>
 				</label>
 				<label class="switch">
 					<input name="enabled" id="enabled" type="checkbox">
+					<span class="slider round"></span>
+				</label>
+			</div>
+			<div id="translate-switch" class="input-switch">
+				<label for="translation-switch">
+					<span id="txt-translate">
+						<svg class="dark-mode glass-card" viewBox="0 0 256 256" fill="currentColor" id="translate-svg"
+							xmlns="http://www.w3.org/2000/svg">
+							<title>Auto Translation</title>
+							<path
+								d="M239.126,212.42188l-56-112a8.0001,8.0001,0,0,0-14.31055,0L147.11786,143.817a88.012,88.012,0,0,1-47.15222-16.89991A103.63885,103.63885,0,0,0,127.666,64H151.9707a8,8,0,0,0,0-16h-56V32a8,8,0,0,0-16,0V48h-56a8,8,0,1,0,0,16h87.63251a87.71319,87.71319,0,0,1-23.64032,52.34106A87.62936,87.62936,0,0,1,68.981,85.332a7.99985,7.99985,0,1,0-15.083,5.33789A103.55887,103.55887,0,0,0,75.9798,126.93945,87.52763,87.52763,0,0,1,23.9707,144a8,8,0,1,0,0,16A103.48489,103.48489,0,0,0,87.984,137.90955,104.14159,104.14159,0,0,0,139.42535,159.202l-26.60992,53.21985a8.00006,8.00006,0,0,0,14.31055,7.15625L140.915,192h70.11133l13.78906,27.57813a8.00006,8.00006,0,0,0,14.31055-7.15625ZM148.915,176l27.05566-54.11133L203.02637,176Z" />
+						</svg>
+						Auto Translate to your language ?
+					</span>
+				</label>
+				<label class="switch">
+					<input name="translation-switch" id="translation-switch" type="checkbox">
 					<span class="slider round"></span>
 				</label>
 			</div>
