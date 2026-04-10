@@ -7,7 +7,7 @@
     "default_title": "No Spoilers",
     "default_popup": "./html/popup.html"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "content_scripts": [
     {
       "matches": [
@@ -15,6 +15,9 @@
       ],
       "js": [
         "./js/youtube.js"
+      ],
+      "css": [
+        "./css/youtube.css"
       ]
     }
   ],

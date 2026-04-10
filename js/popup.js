@@ -1,5 +1,6 @@
 const KEYWORD_INPUT = document.getElementById("keyword_input");
 const ENABLED_TOOGLE = document.getElementById("enabled");
+const SHOW_BLOCKED_KEYWORD_ENABLED_TOOGLE = document.getElementById("keywords-enable");
 const DARK_MODE = document.getElementById("dark-mode");
 const UpdateText = document.getElementById("update-text");
 const TranslateSvg = document.getElementById("translate-svg");
@@ -8,8 +9,10 @@ const TranslateSwitch = document.getElementById("translate-switch");
 
 let KEYWORDS = [];
 let ENABLED = true;
+let SHOW_BLOCKED_KEYWORD = false;
 let DARK_MODE_ENABLED = true;
 let translationRunning = false;
+let ShowHideReasoning = false;
 
 let TextContent = [
   {
@@ -44,6 +47,11 @@ let TextContent = [
     opts: {
       isMarkdown: true
     }
+  },
+  {
+    querySelectors: ["#keywords-enable-span"],
+    src: "Show Blocked Keyword",
+    target: null
   }
 ];
 
@@ -86,6 +94,7 @@ function updateUI() {
   document.getElementById("keywords").innerHTML = "";
   KEYWORDS.forEach((keyword) => generateKeywordElement(keyword));
   ENABLED_TOOGLE.checked = ENABLED;
+  SHOW_BLOCKED_KEYWORD_ENABLED_TOOGLE.checked = SHOW_BLOCKED_KEYWORD;
   updateTheme();
 }
 
@@ -123,6 +132,13 @@ KEYWORD_INPUT.addEventListener("keydown", (ev) => {
 
 ENABLED_TOOGLE.addEventListener("change", (ev) => {
   ENABLED = ev.target.checked;
+  console.log("got enabled toogle");
+  sendState();
+});
+
+SHOW_BLOCKED_KEYWORD_ENABLED_TOOGLE.addEventListener("change", (ev) => {
+  SHOW_BLOCKED_KEYWORD = ev.target.checked;
+  console.log("got show toogle");
   sendState();
 });
 
@@ -137,7 +153,7 @@ function sendState() {
   chrome.runtime.sendMessage(
     {
       type: "state_set",
-      value: { keywords: KEYWORDS, enabled: ENABLED, darkMode: DARK_MODE_ENABLED },
+      value: { keywords: KEYWORDS, enabled: ENABLED, darkMode: DARK_MODE_ENABLED, showBlockedKeywords: SHOW_BLOCKED_KEYWORD },
     },
     (response) => {
       console.log(response);
@@ -162,6 +178,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse(true);
     KEYWORDS = request.value.keywords;
     ENABLED = request.value.enabled;
+    SHOW_BLOCKED_KEYWORD = typeof request.value.showBlockedKeywords === "boolean" ? request.value.showBlockedKeywords : false;
     DARK_MODE_ENABLED = request.value.darkMode;
     KEYWORDS = KEYWORDS || [];
     updateUI();

@@ -1,0 +1,36 @@
+.a3r545t44t5_no_spoiler_backdrop {
+    z-index: 500 !important;
+    transform: translateZ(1px) !important;
+}
+
+.a3r545t44t5_no_spoiler_backdrop.is-revealed {
+    backdrop-filter: none !important;
+    background-color: transparent !important;
+    pointer-events: none !important; /* Lets clicks pass through to the video */
+}
+
+.a3r545t44t5_no_spoiler_backdrop.is-revealed > *:not(.a3r545t44t5_no_spoiler_backdrop-toggle-btn) {
+    /* display: none !important; */
+    visibility: hidden !important;
+}
+
+.a3r545t44t5_no_spoiler_backdrop-toggle-btn {
+    pointer-events: all !important;
+}
+
+.a3r545t44t5_no_spoiler_backdrop .a3r545t44t5_no_spoiler_backdrop-toggle-btn {
+    position: absolute !important;
+    top: 8px !important;
+    left: 8px !important;
+    margin: 0 !important; /* Overrides the margin from the JS */
+    z-index: 2147483647 !important;
+    pointer-events: all !important; /* Keeps it clickable */
+    transform: scale(0.85) translateZ(2px) !important; /* Scales it down slightly so it's less intrusive */
+    background-color: rgba(0, 0, 0, 0.4) !important; /* Slightly more transparent */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Keep the hover effect active in the top-right corner */
+.a3r545t44t5_no_spoiler_backdrop.is-revealed .a3r545t44t5_no_spoiler_backdrop-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}

@@ -190,7 +190,9 @@ summary > h4 {
     -webkit-backdrop-filter: blur(calc(50px * var(--var-blur)));
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, calc(var(--var-refraction) * 0.3));
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 32px, rgba(0, 0, 0, 0.05) 0px 2px 8px,
+    box-shadow:
+        rgba(0, 0, 0, 0.15) 0px 8px 32px,
+        rgba(0, 0, 0, 0.05) 0px 2px 8px,
         rgba(255, 255, 255, calc(0.05 + calc(var(--var-refraction) * 0.5))) 0px 1px 0px inset,
         rgba(255, 255, 255, calc(0.05 + calc(var(--var-refraction) * 0.1))) 0px -1px 0px inset;
     position: relative;
@@ -370,21 +372,24 @@ body.dark .translation-off {
 }
 
 #txt-translate,
-#txt-enable {
+#txt-enable,
+#keywords-enable-span {
     display: flex;
     align-items: center;
     gap: 1em;
 }
 
 #txt-translate > svg,
-#txt-enable > svg {
+#txt-enable > svg,
+#keywords-enable-span > svg {
     background: unset;
     background-color: rgb(102, 96, 167, var(--var-refraction));
     padding: 0.3em;
 }
 
 body.dark #txt-translate > svg,
-body.dark #txt-enable > svg {
+body.dark #txt-enable > svg,
+body.dark #keywords-enable-span > svg {
     background-color: rgb(69, 53, 139, var(--var-refraction));
     background-image: unset;
 }

@@ -23,8 +23,8 @@ chrome.tabs.onRemoved.addListener((id, ev) => {
   ACTIVE_TABS.delete(id);
 });
 
-function updateState({ keywords, enabled, darkMode }) {
-  console.log("updateState", keywords, enabled);
+function updateState({ keywords, enabled, darkMode, showBlockedKeywords }) {
+  console.log("updateState", keywords, enabled, darkMode, showBlockedKeywords);
   keywords = keywords || [];
   if (typeof enabled !== "boolean") {
     enabled = true;
@@ -38,28 +38,31 @@ function updateState({ keywords, enabled, darkMode }) {
   chrome.storage.sync.set({ darkMode }, () => {
     console.log("darkMode is set to " + darkMode);
   });
-  sendToAllTabs(keywords, enabled, darkMode);
+  chrome.storage.sync.set({ showBlockedKeywords }, () => {
+    console.log("showBlockedKeywords is set to " + showBlockedKeywords);
+  });
+  sendToAllTabs(keywords, enabled, darkMode, showBlockedKeywords);
   return true;
 }
 
 function fetchAndSendToAllTabs() {
-  chrome.storage.sync.get(["keywords", "enabled", "darkMode"], (result) => {
+  chrome.storage.sync.get(["keywords", "enabled", "darkMode", "showBlockedKeywords"], (result) => {
     console.log("Current state is", result);
-    sendToAllTabs(result.keywords, result.enabled, result.darkMode);
+    sendToAllTabs(result.keywords, result.enabled, result.darkMode, result.showBlockedKeywords || false);
   });
 }
 
-function sendToAllTabs(keywords, enabled, darkMode) {
+function sendToAllTabs(keywords, enabled, darkMode, showBlockedKeywords) {
   ACTIVE_TABS.forEach((tab) => {
     chrome.tabs.sendMessage(tab, {
       type: "state_sync",
-      value: { keywords, enabled, darkMode },
+      value: { keywords, enabled, darkMode, showBlockedKeywords },
     });
   });
 }
 
 function getState() {
-  chrome.storage.sync.get(["keywords", "enabled", "darkMode"], (result) => {
+  chrome.storage.sync.get(["keywords", "enabled", "darkMode", "showBlockedKeywords"], (result) => {
     console.log("Current state is", result);
     chrome.runtime.sendMessage(
       {
@@ -68,6 +71,7 @@ function getState() {
           keywords: result.keywords,
           enabled: result.enabled,
           darkMode: result.darkMode,
+          showBlockedKeywords: result.showBlockedKeywords || false
         },
       },
       (response) => {

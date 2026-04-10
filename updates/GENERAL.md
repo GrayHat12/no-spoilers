@@ -8,3 +8,7 @@ I have an update ready that integrates with this browser api and offers an `Auto
 
 The release is probably going to be for `Youtube Miniplayer` extension first since it has a smaller user base and I will be eventually rolling it out for `No Spoilers` later down the line.
 
+**Change of plans**
+
+* Releasing the auto translation along with a feature to show blocked keywords and a minor ui revamp for `No Spoilers`. An update should be available soon.
+Thanks for the feedback `@PSN Hesabı`
