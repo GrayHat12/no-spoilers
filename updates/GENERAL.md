@@ -12,3 +12,4 @@ The release is probably going to be for `Youtube Miniplayer` extension first sin
 
 * Releasing the auto translation along with a feature to show blocked keywords and a minor ui revamp for `No Spoilers`. An update should be available soon.
 Thanks for the feedback `@PSN Hesabı`
+
